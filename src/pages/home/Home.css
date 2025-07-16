@@ -30,11 +30,11 @@
 }
 
 .name-gradient {
-  font-size: 2.5rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, #ff7e5f, #feb47b, #ff6f91);
+  background: linear-gradient(90deg, #2563eb 20%, #3b82f6 50%, #22c55e 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-size: 3rem;
+  font-weight: bold;
   margin: 0;
 }
 
@@ -57,7 +57,6 @@
   background-color: #1e1e1e;
   border-radius: 8px;
   padding: 20px;
-  font-family: 'Fira Code', monospace;
   color: #c5c5c5;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }

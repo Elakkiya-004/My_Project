@@ -5,7 +5,7 @@ function BreadCrumbBar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "experience", "projects", "about", "contact"];
+      const sections = ["home", "experience","skills", "projects",  "contact"];
       for (let id of sections) {
         const section = document.getElementById(id);
         if (section && window.scrollY + 100 >= section.offsetTop) {

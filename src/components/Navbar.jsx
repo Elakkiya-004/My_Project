@@ -15,7 +15,7 @@ function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      const sections = ['home', 'experience', 'projects', 'about', 'contact'];
+      const sections = ['home', 'experience', 'skills','projects', 'contact'];
       const scrollPos = window.scrollY + 100;
 
       for (let id of sections) {
@@ -37,7 +37,7 @@ function Navbar() {
       <div className="container justify-content-center">
         <div className="collapse navbar-collapse show" id="navbarNav">
           <ul className="navbar-nav gap-4">
-            {['home', 'experience', 'projects', 'about', 'contact'].map((id) => (
+            {['home', 'experience','skills','projects','contact'].map((id) => (
               <li className="nav-item" key={id}>
                 <button
                   className={`nav-link btn btn-link ${activeSection === id ? 'active-link' : ''}`}

@@ -3,8 +3,9 @@ import BreadCrumbBar from './components/breadcrumbBar';
 import Home from './pages/home/Home';
 import Experience from './pages/experience/Experience';
 import Projects from './pages/projects/Projects';
-import About from './pages/about-me/AboutMe';
 import Contact from './pages/contact/Contact';
+import Skills from './pages/skills/Skills';
+import '@fontsource/inter'; // Default weight 400
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
       {/* <BreadCrumbBar /> */}
       <Home />
       <Experience />
+      <Skills />
       <Projects />
-      <About />
       <Contact />
     </>
   );
