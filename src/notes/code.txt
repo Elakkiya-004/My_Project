@@ -1,0 +1,94 @@
+// export default Home;
+import React, { useState, useEffect } from "react";
+import "./Home.css"; // CSS is provided below
+
+function Home({targetPercent }) {
+  const [hovered, setHovered] = useState(false);
+  const [percent, setPercent] = useState(0);
+
+  useEffect(() => {
+    let interval;
+    if (hovered) {
+      let count = 0;
+      interval = setInterval(() => {
+        count += 1;
+        setPercent(count);
+        if (count >= targetPercent) clearInterval(interval);
+      }, 20);
+    } else {
+      setPercent(0);
+    }
+    return () => clearInterval(interval);
+  }, [hovered, targetPercent]);
+
+  return (
+    <div
+      className="box-container"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div
+        className="wave"
+        style={{ height: hovered ? `${targetPercent}%` : "0%" }}
+      ></div>
+      <div className="percentage">{percent}%</div>
+    </div>
+  );
+}
+
+export default function WaterBoxGrid() {
+  // Add your desired percentages here
+  const data = [80, 60, 90, 40];
+
+  return (
+    <div className="grid-container">
+      {data.map((value, index) => (
+        <Home key={index} targetPercent={value} />
+      ))}
+    </div>
+  );
+}
+.grid-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 40px;
+}
+
+.box-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: 3px solid #2563eb;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #f0f4ff;
+  font-family: Arial, sans-serif;
+  transition: box-shadow 0.3s ease;
+}
+
+.box-container:hover {
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(180deg, #2563eb 0%, #3b82f6 100%);
+  transition: height 2s ease;
+  z-index: 1;
+}
+
+.percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  z-index: 2;
+  pointer-events: none;
+}
