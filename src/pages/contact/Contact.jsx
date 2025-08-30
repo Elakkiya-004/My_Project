@@ -1,6 +1,6 @@
 import React from "react";
-import '../../styles/common.css';
-import '../../styles/responsive.css'
+import './Contact.css';
+// import '../../styles/responsive.css'
 
 import {
   FaUser,

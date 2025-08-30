@@ -1,6 +1,5 @@
 // import './Home.css';
-import '../../styles/common.css'
-import '../../styles/responsive.css'
+import './Home.css'
 
 function Home() {
   return (
@@ -25,29 +24,22 @@ function Home() {
         <span className="dot green"></span>
         <span className="filename">developer.js</span>
       </div>
-      <pre className="code-content">
-<code>
-{`// Software Engineer
-const developer = {
-  name: 'Elakkiya Sakthivelu',
-  skills: ['React', 'Node.js', 'MongoDB'],
-  focuses: ['Full-Stack', 'UI/UX'],
-  learning: 'Always'
-};`}
- <code>
-        <span className="comment">// Software Engineer</span>{"\n"}
-        <span className="keyword">const</span> developer = {"{"}{"\n"}
-        &nbsp;&nbsp;name: <span className="string">'Elakkiya Sakthivelu'</span>,{"\n"}
-        &nbsp;&nbsp;skills: [<span className="string">'React'</span>,{" "}
-        <span className="string">'Node.js'</span>,{" "}
-        <span className="string">'MongoDB'</span>],{"\n"}
-        &nbsp;&nbsp;focuses: [<span className="string">'Full-Stack'</span>,{" "}
-        <span className="string">'UI/UX'</span>],{"\n"}
-        &nbsp;&nbsp;learning: <span className="string">'Always'</span>{"\n"}
-        {"};"}
-      </code>
-</code>
-      </pre>
+<pre className="code-content">
+  <code>
+    <span className="comment">// Software Engineer</span>{"\n"}
+    <span className="keyword">const</span>{" "}
+    <span className="variable">developer</span> = <span className="curly_brace">{"{"}</span>{"\n"}
+    &nbsp;&nbsp;<span className="key">name</span>: <span className="string">'Elakkiya Sakthivelu'</span>,{"\n"}
+    &nbsp;&nbsp;<span className="key">skills</span>: <span className='Square_bracket'>[</span><span className="string">'React'</span>,{" "}
+    <span className="string">'Node.js'</span>,{" "}
+    <span className="string">'MongoDB'</span><span className='Square_bracket'>]</span>,{"\n"}
+    &nbsp;&nbsp;<span className="key">focuses</span>: <span className='Square_bracket'>[</span><span className="string">'Full-Stack'</span>,{" "}
+    <span className="string">'UI/UX'</span><span className='Square_bracket'>]</span>,{"\n"}
+    &nbsp;&nbsp;<span className="key">learning</span>: <span className="string">'Always'</span>{"\n"}
+    <span className="curly_brace">{"};"}</span>
+  </code>
+</pre>
+
     </div>
   </div>
 </section>

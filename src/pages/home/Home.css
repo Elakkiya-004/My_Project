@@ -1,0 +1,124 @@
+/* Home */
+.home-section {
+  background-color: #000000;
+  color: white;
+  min-height: 100vh;
+  padding-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.home-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 200px;
+  flex-wrap: wrap;
+}
+
+.intro-content {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.greeting {
+  text-transform: lowercase;
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.name-gradient {
+  background: linear-gradient(90deg, #2563eb 20%, #3b82f6 50%, #22c55e 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.role {
+  color: #ccc;
+  font-size: 1.2rem;
+  margin: 16px 0;
+}
+
+.about {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+/* Code Box */
+.code-box {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 20px;
+  color: #c5c5c5;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.code-header .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.red {
+  background-color: #ff5f56;
+}
+.yellow {
+  background-color: #ffbd2e;
+}
+.green {
+  background-color: #27c93f;
+}
+
+.filename {
+  color: #888;
+  font-size: 0.9rem;
+  margin-left: auto;
+  font-style: italic;
+}
+
+.code-content {
+  font-size: 14px;
+  background: #1e1e1e; /* optional VS Code style */
+  color: #d4d4d4;      /* default text color */
+  padding: 12px;
+  border-radius: 8px;
+  display: block;
+  white-space: pre;    /* preserves spacing */
+
+}
+code span{
+    font-family: Consolas, 'Courier New', monospace;
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.code-content .comment { color: #6a994c; }
+.code-content .keyword { color: #4d9cd6; }       /* const, let, function */
+.code-content .variable { color: #3f7bb0; }      /* developer */
+.code-content .key { color: #53b8fe; }           /* name, skills, focuses */
+.code-content .string { color: #ce915e; }        /* 'React', 'Always' */
+.code-content .Square_bracket { color: #da70d6; }/* [ ] */
+.code-content .curly_brace {color: #ffb416; /* gold/yellow */}
