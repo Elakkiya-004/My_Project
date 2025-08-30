@@ -1,4 +1,6 @@
-import './Home.css';
+// import './Home.css';
+import '../../styles/common.css'
+import '../../styles/responsive.css'
 
 function Home() {
   return (
@@ -32,6 +34,18 @@ const developer = {
   focuses: ['Full-Stack', 'UI/UX'],
   learning: 'Always'
 };`}
+ <code>
+        <span className="comment">// Software Engineer</span>{"\n"}
+        <span className="keyword">const</span> developer = {"{"}{"\n"}
+        &nbsp;&nbsp;name: <span className="string">'Elakkiya Sakthivelu'</span>,{"\n"}
+        &nbsp;&nbsp;skills: [<span className="string">'React'</span>,{" "}
+        <span className="string">'Node.js'</span>,{" "}
+        <span className="string">'MongoDB'</span>],{"\n"}
+        &nbsp;&nbsp;focuses: [<span className="string">'Full-Stack'</span>,{" "}
+        <span className="string">'UI/UX'</span>],{"\n"}
+        &nbsp;&nbsp;learning: <span className="string">'Always'</span>{"\n"}
+        {"};"}
+      </code>
 </code>
       </pre>
     </div>

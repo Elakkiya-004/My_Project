@@ -1,5 +1,7 @@
 import React from "react";
-import "./Contact.css";
+import '../../styles/common.css';
+import '../../styles/responsive.css'
+
 import {
   FaUser,
   FaEnvelope,

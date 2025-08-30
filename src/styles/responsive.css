@@ -1,0 +1,48 @@
+/* navbar */
+@media (max-width: 768px) {
+  nav{
+    display: none !important;
+  }
+  /* .menu-icon {
+    display: flex;
+  }
+
+  .navbar-nav {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    padding: 20px;
+    border-radius: 0 0 12px 12px;
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+
+  .navbar-nav.open {
+    display: flex;
+  } */
+}
+
+/* contact */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .field {
+    width: 100%;
+  }
+
+  #name,
+  #email {
+    width: 100%; /* Ensure inputs go full width on small screen */
+  }
+
+  .left_section,
+  .right_section {
+    width: 100%; /* Stack left and right sections vertically */
+  }
+}
+

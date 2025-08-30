@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import './Navbar.css';
+// import './Navbar.css';
+import '../styles/common.css'
+import '../styles/responsive.css'
 
 function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
@@ -13,24 +15,27 @@ function Navbar() {
     }
   };
 
-  useEffect(() => {
-    const onScroll = () => {
-      const sections = ['home', 'experience', 'skills','projects', 'contact'];
-      const scrollPos = window.scrollY + 100;
+ useEffect(() => {
+  const onScroll = () => {
+    const sections = ['home', 'experience', 'skills','projects', 'contact'];
+    const scrollPos = window.scrollY + 100;
 
-      for (let id of sections) {
-        const el = document.getElementById(id);
-        if (el && scrollPos >= el.offsetTop) {
-          setActiveSection(id);
-        }
+    for (let id of sections) {
+      const el = document.getElementById(id);
+      if (el && scrollPos >= el.offsetTop) {
+        setActiveSection(id);
       }
+    }
 
-      setScrolled(window.scrollY > 50);
-    };
+    setScrolled(window.scrollY > 50);
+  };
 
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  // ✅ Call once immediately on mount
+  onScroll();
+
+  window.addEventListener('scroll', onScroll);
+  return () => window.removeEventListener('scroll', onScroll);
+}, []);
 
   return (
     <nav className={`navbar navbar-expand-lg fixed-top ${scrolled ? 'scrolled' : 'transparent'} custom-navbar`}>
@@ -40,7 +45,7 @@ function Navbar() {
             {['home', 'experience','skills','projects','contact'].map((id) => (
               <li className="nav-item" key={id}>
                 <button
-                  className={`nav-link btn btn-link ${activeSection === id ? 'active-link' : ''}`}
+                  className={`nav-link  btn-link ${activeSection === id ? 'active-link' : ''}`}
                   onClick={() => handleScroll(id)}
                 >
                   {id.charAt(0).toUpperCase() + id.slice(1)}
