@@ -1,94 +1,116 @@
-// export default Home;
-import React, { useState, useEffect } from "react";
-import "./Home.css"; // CSS is provided below
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { VscVscode } from "react-icons/vsc";
+import { SiTailwindcss, SiBootstrap, SiExpress, SiMongodb, SiMysql, SiPostman, SiSequelize, SiJquery } from "react-icons/si";
 
-function Home({targetPercent }) {
-  const [hovered, setHovered] = useState(false);
-  const [percent, setPercent] = useState(0);
+// Icons
+const icons = {
+  HTML: <FaHtml5 color="#E34F26" />,
+  CSS: <FaCss3Alt color="#1572B6" />,
+  Javascript: <FaJsSquare color="#F7DF1E" />,
+  React: <FaReact color="#61DAFB" />,
+  jQuery: <SiJquery color="#0769AD" />,
+  "Tailwind CSS": <SiTailwindcss color="#38B2AC" />,
+  Bootstrap: <SiBootstrap color="#7952B3" />,
+  Node: <FaNodeJs color="#339933" />,
+  Express: <SiExpress color="white" />,
+  MongoDB: <SiMongodb color="#47A248" />,
+  MySql: <SiMysql color="#4479A1" />,
+  Sequlise: <SiSequelize color="#52B0E7" />,
+  Git: <FaGitAlt color="#F05032" />,
+  Github: <FaGithub color="#FFFFFF" />,
+  VScode: <VscVscode color="#007ACC" />,
+  Postman: <SiPostman color="#FF6C37" />,
+};
 
-  useEffect(() => {
-    let interval;
-    if (hovered) {
-      let count = 0;
-      interval = setInterval(() => {
-        count += 1;
-        setPercent(count);
-        if (count >= targetPercent) clearInterval(interval);
-      }, 20);
-    } else {
-      setPercent(0);
+// Skill fill percentages
+const skillPercent = {
+   HTML: 95,
+  CSS:95 ,
+  Javascript:90 ,
+  React:80 ,
+  jQuery: 80,
+  "Tailwind CSS": 80,
+  Bootstrap: 80,
+  Node: 85,
+  Express:85 ,
+  MongoDB:85 ,
+  MySql:50 ,
+  Sequlise: 80,
+  Git: 90,
+  Github: 85,
+  VScode: 90,
+  Postman: 80,
+};
+
+export default function SkillsTabs({ skillsData }) {
+  const [activeTab, setActiveTab] = useState("All");
+  const [showLeft, setShowLeft] = useState(false);
+  const [showRight, setShowRight] = useState(false);
+
+  const tabsRef = useRef(null);
+  const tabKeys = ["All", ...Object.keys(skillsData).filter((key) => key !== "All")];
+
+  // Scroll buttons logic
+  const scrollTabs = (direction) => {
+    if (tabsRef.current) {
+      const scrollAmount = 250;
+      tabsRef.current.scrollBy({ left: direction === "left" ? -scrollAmount : scrollAmount, behavior: "smooth" });
     }
-    return () => clearInterval(interval);
-  }, [hovered, targetPercent]);
+  };
+
+  // Framer Motion variants
+  const containerVariant = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1, duration: 0.6 } },
+  };
+
+  const itemVariant = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
 
   return (
-    <div
-      className="box-container"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+    <motion.div 
+      className="skills-tabs"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={containerVariant}
     >
-      <div
-        className="wave"
-        style={{ height: hovered ? `${targetPercent}%` : "0%" }}
-      ></div>
-      <div className="percentage">{percent}%</div>
-    </div>
+      {/* Tabs with arrows */}
+      <div className="tabs-container">
+        {showLeft && <button className="scroll-btn left" onClick={() => scrollTabs("left")}><FaChevronLeft /></button>}
+        <div className="tabs" ref={tabsRef}>
+          {tabKeys.map((tab) => (
+            <motion.button
+              key={tab}
+              className={`tab-btn ${activeTab === tab ? "active-tab" : ""}`}
+              onClick={() => setActiveTab(tab)}
+              variants={itemVariant}
+            >
+              {tab}
+            </motion.button>
+          ))}
+        </div>
+        {showRight && <button className="scroll-btn right" onClick={() => scrollTabs("right")}><FaChevronRight /></button>}
+      </div>
+
+      {/* Skills Panel */}
+      <motion.div className="skills-panel" variants={containerVariant}>
+        {skillsData[activeTab].map((skill) => (
+          <motion.div
+            className="skill-btn"
+            key={skill}
+            style={{ "--fill": `${skillPercent[skill] || 0}%` }}
+            variants={itemVariant}
+          >
+            <span className="skill-icon">{icons[skill]}</span>
+            <span className="skill-text">{skill}</span>
+          </motion.div>
+        ))}
+      </motion.div>
+    </motion.div>
   );
-}
-
-export default function WaterBoxGrid() {
-  // Add your desired percentages here
-  const data = [80, 60, 90, 40];
-
-  return (
-    <div className="grid-container">
-      {data.map((value, index) => (
-        <Home key={index} targetPercent={value} />
-      ))}
-    </div>
-  );
-}
-.grid-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 40px;
-}
-
-.box-container {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  border: 3px solid #2563eb;
-  border-radius: 16px;
-  overflow: hidden;
-  background-color: #f0f4ff;
-  font-family: Arial, sans-serif;
-  transition: box-shadow 0.3s ease;
-}
-
-.box-container:hover {
-  box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
-}
-
-.wave {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: linear-gradient(180deg, #2563eb 0%, #3b82f6 100%);
-  transition: height 2s ease;
-  z-index: 1;
-}
-
-.percentage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: white;
-  z-index: 2;
-  pointer-events: none;
 }

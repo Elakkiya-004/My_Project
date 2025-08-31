@@ -1,23 +1,22 @@
-import { useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
 import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { VscVscode } from "react-icons/vsc";
 import { SiTailwindcss, SiBootstrap, SiExpress, SiMongodb, SiMysql, SiPostman, SiSequelize, SiJquery } from "react-icons/si";
 
 // Icons
 const icons = {
-  html: <FaHtml5 color="#E34F26" />,
-  css: <FaCss3Alt color="#1572B6" />,
-  js: <FaJsSquare color="#F7DF1E" />,
-  react: <FaReact color="#61DAFB" />,
+  HTML: <FaHtml5 color="#E34F26" />,
+  CSS: <FaCss3Alt color="#1572B6" />,
+  Javascript: <FaJsSquare color="#F7DF1E" />,
+  React: <FaReact color="#61DAFB" />,
   jQuery: <SiJquery color="#0769AD" />,
   "Tailwind CSS": <SiTailwindcss color="#38B2AC" />,
   Bootstrap: <SiBootstrap color="#7952B3" />,
-  node: <FaNodeJs color="#339933" />,
-  express: <SiExpress color="white" />,
+  Node: <FaNodeJs color="#339933" />,
+  Express: <SiExpress color="white" />,
   MongoDB: <SiMongodb color="#47A248" />,
   MySql: <SiMysql color="#4479A1" />,
-  sequlise: <SiSequelize color="#52B0E7" />,
+  Sequlise: <SiSequelize color="#52B0E7" />,
   Git: <FaGitAlt color="#F05032" />,
   Github: <FaGithub color="#FFFFFF" />,
   VScode: <VscVscode color="#007ACC" />,
@@ -26,11 +25,22 @@ const icons = {
 
 // Skill fill percentages
 const skillPercent = {
-  html: 50,
-  css: 100,
-  js: 50,
-  react: 80,
-  node: 70,
+  HTML: 95,
+  CSS: 95,
+  Javascript: 90,
+  React: 80,
+  jQuery: 80,
+  "Tailwind CSS": 80,
+  Bootstrap: 80,
+  Node: 85,
+  Express: 85,
+  MongoDB: 85,
+  MySql: 50,
+  Sequlise: 80,
+  Git: 90,
+  Github: 85,
+  VScode: 90,
+  Postman: 80,
 };
 
 export default function SkillsTabs({ skillsData }) {
@@ -41,65 +51,91 @@ export default function SkillsTabs({ skillsData }) {
   const tabsRef = useRef(null);
   const tabKeys = ["All", ...Object.keys(skillsData).filter((key) => key !== "All")];
 
-  // Scroll buttons logic
-  const scrollTabs = (direction) => {
+  // Update arrow visibility based on scroll
+  const checkArrows = () => {
     if (tabsRef.current) {
-      const scrollAmount = 250;
-      tabsRef.current.scrollBy({ left: direction === "left" ? -scrollAmount : scrollAmount, behavior: "smooth" });
+      const { scrollLeft, scrollWidth, clientWidth } = tabsRef.current;
+      setShowLeft(scrollLeft > 0);
+      setShowRight(scrollLeft + clientWidth < scrollWidth);
     }
   };
 
-  // Framer Motion variants
-  const containerVariant = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1, duration: 0.6 } },
-  };
+  useEffect(() => {
+    checkArrows();
+    if (tabsRef.current) tabsRef.current.addEventListener("scroll", checkArrows);
+    window.addEventListener("resize", checkArrows);
 
-  const itemVariant = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    return () => {
+      if (tabsRef.current) tabsRef.current.removeEventListener("scroll", checkArrows);
+      window.removeEventListener("resize", checkArrows);
+    };
+  }, []);
+
+  const scrollTabs = (direction) => {
+    if (tabsRef.current) {
+      const scrollAmount = 200;
+      tabsRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
-    <motion.div 
-      className="skills-tabs"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={containerVariant}
-    >
+    <div className="skills-tabs">
       {/* Tabs with arrows */}
-      <div className="tabs-container">
-        {showLeft && <button className="scroll-btn left" onClick={() => scrollTabs("left")}><FaChevronLeft /></button>}
-        <div className="tabs" ref={tabsRef}>
+      <div className="tabs-container" style={{ position: "relative", display: "flex", alignItems: "center" }}>
+        {showLeft && (
+          <button className="scroll-btn left" onClick={() => scrollTabs("left")} style={{ position: "absolute", left: 0, zIndex: 1 }}>
+            <FaChevronLeft />
+          </button>
+        )}
+        <div
+          className="tabs"
+          ref={tabsRef}
+          style={{
+            display: "flex",
+            overflowX: "auto",
+            scrollBehavior: "smooth",
+            padding: "10px 0",
+            gap: "10px",
+            scrollbarWidth: "none",
+          }}
+        >
           {tabKeys.map((tab) => (
-            <motion.button
+            <button
               key={tab}
               className={`tab-btn ${activeTab === tab ? "active-tab" : ""}`}
               onClick={() => setActiveTab(tab)}
-              variants={itemVariant}
+             
             >
               {tab}
-            </motion.button>
+            </button>
           ))}
         </div>
-        {showRight && <button className="scroll-btn right" onClick={() => scrollTabs("right")}><FaChevronRight /></button>}
+        {showRight && (
+          <button className="scroll-btn right" onClick={() => scrollTabs("right")} style={{ position: "absolute", right: 0, zIndex: 1 }}>
+            <FaChevronRight />
+          </button>
+        )}
       </div>
 
       {/* Skills Panel */}
-      <motion.div className="skills-panel" variants={containerVariant}>
+      <div className="skills-panel" style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginTop: "20px" }}>
         {skillsData[activeTab].map((skill) => (
-          <motion.div
+          <div
             className="skill-btn"
             key={skill}
-            style={{ "--fill": `${skillPercent[skill] || 0}%` }}
-            variants={itemVariant}
+            style={{
+              "--fill": `${skillPercent[skill] || 0}%`,
+            
+            }}
           >
             <span className="skill-icon">{icons[skill]}</span>
             <span className="skill-text">{skill}</span>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
