@@ -1,0 +1,227 @@
+/* ---------------- Skills Section ---------------- */
+.skills-section {
+  scroll-margin-top: 80px;
+  background-color: #1A1A1B; /* dark portfolio background */
+  padding: 100px;
+}
+
+.skills-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* Label */
+.skills-label {
+  display: inline-block;
+  font-size: 12px;
+  color: #1A1A1B;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #37AA9C, #2c8d7d); /* subtle gradient */
+  padding: 4px 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Title */
+.skills-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #37AA9C 20%, #94F3E4 50%, #37AA9C 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Description paragraph */
+.skills-header p:last-child {
+  color: #ccc;
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ---------------- Tabs with scroll arrows ---------------- */
+.tabs-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+/* Tabs scroll area */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* hide scrollbar Firefox */
+  scroll-behavior: smooth;
+  flex: 1;
+}
+.tabs::-webkit-scrollbar {
+  display: none; /* hide scrollbar Chrome/Safari */
+}
+
+.tab-btn {
+  flex: 0 0 auto; /* prevent shrinking */
+  background-color: #333F44;
+  color: #94F3E4;
+  border-radius: 30px;
+  border: none;
+  padding: 5px 16px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  min-width: 120px;
+  text-align: center;
+}
+
+.tab-btn:hover {
+  background: linear-gradient(90deg, #2c8d7d, #1f6c5b); /* hover gradient */
+  color: #1A1A1B;
+  border-color: #94F3E4;
+}
+
+.active-tab {
+  background: linear-gradient(90deg, #2c8d7d, #1f6c5b); /* hover gradient */
+  color: #1A1A1B;
+  border-color: #94F3E4;
+}
+
+/* Scroll buttons */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #1a1a1b;
+  border: none;
+  color: #94F3E4;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 10;
+  /* padding: 5px; */
+  border-radius: 70%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  transition: background 0.3s;
+}
+.scroll-btn:hover {
+  background: #37AA9C;
+  color: #1A1A1B;
+}
+.scroll-btn.left {
+  left: -10px;
+}
+.scroll-btn.right {
+  right: -10px;
+}
+
+/* ---------------- Skills Panel ---------------- */
+.skills-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.skill-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid #37AA9C;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  min-width: 100px;
+  justify-content: center;
+  background: linear-gradient(to right, #37AA9C 100%, rgb(10,10,10) 0%);
+  background-size: 0% 100%; /* start at 0% width */
+  background-repeat: no-repeat;
+  transition: background-size 0.6s ease, transform 0.3s ease, color 0.3s ease;
+}
+.skill-btn:hover {
+  transform: scale(1.1); /* grow button */
+  color: white;
+
+  /* Animate to the desired fill percentage using CSS variable */
+  background-size: var(--fill, 0%) 100%;
+}
+
+
+.skill-icon {
+  font-size: 1.3rem;
+}
+
+.skill-text {
+  font-size: 0.95rem;
+}
+
+/* ---------------- Responsive Styles ---------------- */
+
+/* Tablet screens */
+@media (max-width: 992px) {
+  .skills-section {
+    padding: 60px 40px;
+  }
+  .skills-title {
+    font-size: 2.5rem;
+  }
+  .skills-header p:last-child {
+    font-size: 0.95rem;
+    max-width: 500px;
+  }
+  .tab-btn {
+    min-width: 100px;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+  .skills-section {
+    padding: 40px 20px;
+  }
+  .skills-title {
+    font-size: 2rem;
+  }
+  .skills-label {
+    font-size: 12px;
+    padding: 5px 16px;
+  }
+  .skills-header p:last-child {
+    font-size: 0.9rem;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  /* Tabs scroll horizontally with arrows */
+  .tabs {
+    justify-content: flex-start; /* scrollable from left */
+    gap: 10px;
+  }
+
+  /* Skills two per row */
+  .skills-panel {
+    justify-content: center;
+  }
+  .skill-btn {
+    flex: 1 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+  .skill-icon {
+    font-size: 1.1rem;
+  }
+}

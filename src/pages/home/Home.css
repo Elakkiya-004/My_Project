@@ -1,7 +1,7 @@
-/* Home */
+/* Home Section */
 .home-section {
-  background-color: #000000;
-  color: white;
+  background-color: #1A1A1B; /* dark portfolio background */
+  color: #ccc;               /* general text color */
   min-height: 100vh;
   padding-top: 80px;
   display: flex;
@@ -9,6 +9,7 @@
   justify-content: center;
   flex-direction: column;
 }
+
 .home-container {
   display: flex;
   align-items: center;
@@ -17,6 +18,7 @@
   flex-wrap: wrap;
 }
 
+/* Intro Content - Left Side */
 .intro-content {
   flex: 1;
   min-width: 300px;
@@ -26,12 +28,17 @@
 .greeting {
   text-transform: lowercase;
   font-size: 1rem;
-  color: #ccc;
+  color: #94F3E4; /* light cyan highlight */
   margin-bottom: 8px;
 }
 
 .name-gradient {
-  background: linear-gradient(90deg, #2563eb 20%, #3b82f6 50%, #22c55e 80%);
+  background: linear-gradient(
+    90deg,
+    #37AA9C 20%,
+    #94F3E4 50%,
+    #37AA9C 80%
+  ); /* gradient with portfolio colors */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 3rem;
@@ -40,15 +47,16 @@
 }
 
 .role {
-  color: #ccc;
+  color: #ccc;  /* light grey text */
   font-size: 1.2rem;
   margin: 16px 0;
 }
 
 .about {
-  color: #aaa;
+  color: #aaa;  /* slightly lighter grey for readability */
   font-size: 1rem;
 }
+
 
 /* Code Box */
 .code-box {
