@@ -1,74 +1,149 @@
-/* Navbar Base */
-.custom-navbar {
+/* ---------------- Navbar Base ---------------- */
+.navbar {
+  width: 100%;
   height: 60px;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  background-color: transparent;
   transition: background-color 0.3s ease;
   display: flex;
   align-items: center;
-  z-index: 999;
 }
 
-/* Transparent vs Scrolled */
-.custom-navbar.transparent {
-  background-color: transparent !important;
+.navbar.scrolled {
+  background-color: #1a1a1b;
 }
 
-.custom-navbar.scrolled {
-  background-color: #1A1A1B !important; /* Dark background when scrolled */
-}
-
-/* Navbar container */
 .nav-container {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-
-/* Hamburger menu */
-.menu-icon .bar {
-  width: 25px;
-  height: 3px;
-  background-color: #94F3E4; /* light cyan bars for contrast */
-}
-
-/* Menu items */
-.navbar-nav {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  padding: 10px 20px;
+  max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative;
 }
+
+/* Centered Links */
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  margin: 0 auto; /* Centers horizontally */
+  padding: 0;
+}
+
+
 
 /* Links */
 .navbar .nav-link {
   font-size: 1rem;
   color: #ccc; /* light grey for default text */
-  padding: 8px 16px;
+  padding: 2px 16px;
   transition: color 0.3s, background-color 0.3s;
   border-radius: 8px;
 }
 
-.navbar .nav-link:hover {
+.navbar .nav-link:hover{
   color: #94F3E4; /* hover highlight */
-}
 
-.active-link {
-  color: #1A1A1B !important; /* dark text on active */
+}
+.nav-link.active {
+    color: #1A1A1B !important; /* dark text on active */
   background-color: #37AA9C !important; /* primary green highlight */
   font-weight: bold;
   height: 100%;
 }
 
-.navbar .btn-link {
-  text-decoration: none;
+/* Resume button (always on right in desktop) */
+.resume-btn {
+  background-color: #37aa9c;
+  color: #1a1a1b;
+  padding: 8px 16px;
   border: none;
-  background: none;
-  padding: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  margin-left: auto; /* Pushes to right */
 }
+
+.resume-btn:hover {
+  background-color: #94f3e4;
+}
+
+/* Mobile toggle */
+.mobile-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: #37aa9c;
+  cursor: pointer;
+}
+
+/* Mobile Sidebar Menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  width: 50%;
+  height: 100%;
+  background-color: #1a1a1b;
+  transition: right 0.3s ease;
+  padding: 60px 20px 20px 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobile-menu .nav-link {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+.mobile-menu .nav-link.active {
+  color: #37aa9c;
+}
+
+.mobile-menu .resume-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Overlay */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+}
+
+/* Responsive */
 @media (max-width: 767px) {
-  .custom-navbar{
-    display: none !important;
+  .nav-links,
+  .resume-btn {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: block;
+    margin-left: auto;
   }
 }

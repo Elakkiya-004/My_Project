@@ -1,249 +1,74 @@
-.contact-section {
-  min-height: 100vh;
-  background: black;
-  padding: 80px;
-}
-.contact-header{
-  text-align: center;
-}
-.contact-label {
-  display: inline-block;
-  font-size: 15px;
-  color: #2563eb;
-  text-align: center; 
-  border: 0px solid #2563eb;
-  background-color: #2d2d2e;
-  border-radius: 20px;
-  font-weight:100;
-  padding: 4px 20px;
-}
-.contact-title{
-  font-size: 40px;
-  font-weight: bolder;
-  color: white;
-}
-
-.section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  padding-top: 30px;
-}
-
-
-.left_section, .right_section {
-  /* padding: 25px; */
-  /* border: 1px solid hsl(214, 8%, 39%); */
-  border-radius: 10px;
-}
-form{
-   padding: 25px;
-  border: 1px solid hsl(214, 8%, 39%);
-  border-radius: 10px;
-}
-.left_section {
-  width: 40%;
-  background-color: #2563eb;
-}
-.right_section{
-    display: flex;
-    opacity: 1;
-  width: 40%;
-
-}
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  /* gap: 1px; */
-  margin-bottom: 1.5rem;
-}
-
-.field {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-#name,#email{
-  width: 50%;
-}
-label {
-  margin-bottom: 5px;
-  /* font-weight: bold; */
-  color: white;
-}
-
-.input-icon {
+/* Navbar Base */
+.custom-navbar {
+  height: 60px;
+  transition: background-color 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: transparent;
-  padding: 8px 12px;
-  border: 1px solid #2563eb;
-  border-radius: 6px;
-  transition: border 0.3s ease;
+  z-index: 999;
 }
 
-.input-icon input,
-.input-icon textarea {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  background: transparent;
-  color: white; /* Keep input text visible on dark background */
+/* Transparent vs Scrolled */
+.custom-navbar.transparent {
+  background-color: transparent !important;
 }
 
-.input-icon svg , input::placeholder,textarea::placeholder{
-  color: #a4a9ba; /* Change to any color you want */
-}
-/* Change border color when input is focused */
-.input-icon:has(input:focus),
-.input-icon:has(textarea:focus) {
-  border-color: #485c89;
+.custom-navbar.scrolled {
+  background-color: #1A1A1B !important; /* Dark background when scrolled */
 }
 
-textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-.textarea-icon {
-  align-items: flex-start; /* Align icon to top */
-}
-
-/* Optional: adjust icon padding to match top of textarea text */
-.textarea-icon svg {
-  margin-top: 6px;
-}
-
-.submit-btn {
+/* Navbar container */
+.nav-container {
   width: 100%;
-  padding: 10px;
-  background-color: #2563eb ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Hamburger menu */
+.menu-icon .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #94F3E4; /* light cyan bars for contrast */
+}
+
+/* Menu items */
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 10px 20px;
+  margin: 0 auto;
+}
+
+/* Links */
+.navbar .nav-link {
+  font-size: 1rem;
+  color: #ccc; /* light grey for default text */
+  padding: 8px 16px;
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 8px;
+}
+
+.navbar .nav-link:hover {
+  color: #94F3E4; /* hover highlight */
+}
+
+.active-link {
+  color: #1A1A1B !important; /* dark text on active */
+  background-color: #37AA9C !important; /* primary green highlight */
+  font-weight: bold;
+  height: 100%;
+}
+
+.navbar .btn-link {
+  text-decoration: none;
   border: none;
-  border-radius: 10px;
-  color: white;
-  /* font-weight: bold; */
-  cursor: pointer;
-  margin-top: 10px;
-      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-
+  background: none;
+  padding: 0;
 }
-
-
-.submit-btn:hover {
-  transform: scale(1.05);
-}
-
-@media (max-width: 768px) {
-  .row {
-    flex-direction: column;
+@media (max-width: 767px) {
+  .custom-navbar{
+    display: none !important;
   }
-}import React from "react";
-import "./Contact.css";
-import {
-  FaUser,
-  FaEnvelope,
-  FaComment,
-  FaTwitter,
-  FaGithub,
-  
-  FaRegStickyNote,FaPaperPlane,FaMapMarkerAlt
-} from "react-icons/fa";
-
-export default function Contact() {
-  return (
-    <section id="contact" className="contact-section">
-      <div className="contact-header">
-        <p className="contact-label">Contact</p>
-        <div className="contact-title">Get in Touch</div>
-      </div>
-
-      <div className="section">
-        <div className="left_section">
-            <div className="contact-box">
-        {/* LEFT PANEL */}
-        <div className="contact-info">
-          <h3>Contact Information</h3>
-          <div className="info-block">
-            <FaEnvelope className="icon" />
-            <div>
-              <p className="info-title">Email</p>
-              <p>ud4yg@yandex.com</p>
-            </div>
-          </div>
-          <div className="info-block">
-            <FaMapMarkerAlt className="icon" />
-            <div>
-              <p className="info-title">Location</p>
-              <p>Bengaluru, Karnataka, India</p>
-            </div>
-          </div>
-
-          <div className="social">
-            <p>Social Media</p>
-            <div className="social-icons">
-              <FaGithub />
-              <FaLinkedin />
-              <FaTwitter />
-            </div>
-          </div>
-
-          <div className="response-time">
-            <p className="response-label">Response Time</p>
-            <p>I typically reply within 24 hours during business days.</p>
-          </div>
-          </div>
-         </div>
-        </div>
-
-        <div className="right_section">
-          <form>
-            <div className="row">
-              <div className="field">
-                <label htmlFor="name">Your Name</label>
-                <div className="input-icon">
-                  <FaUser />
-                  <input type="text" id="name" name="name" placeholder="Enter your name" />
-                </div>
-              </div>
-
-              <div className="field">
-                <label htmlFor="email">Email</label>
-                <div className="input-icon">
-                  <FaEnvelope />
-                  <input type="email" id="email" name="email" placeholder="Enter your email" />
-                </div>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="field">
-                <label htmlFor="subject">Subject</label>
- <div className="input-icon">
-                      <FaRegStickyNote />
-                <input type="text" id="subject" name="subject" placeholder="Subject" />
-
-                </div>              </div>
-            </div>
-
-            <div className="row">
-              <div className="field">
-                <label htmlFor="message">Message</label>
-                <div className="input-icon textarea-icon">
-                  <FaComment />
-                  <textarea id="message" name="message" placeholder="Write your message"></textarea>
-                </div>
-              </div>
-            </div>
-
-<button type="submit" className="submit-btn">
-  <FaPaperPlane style={{ marginRight: "8px" }} /> Send Message
-</button>
-          </form>
-        </div>
-      </div>
-    </section>
-  );
 }

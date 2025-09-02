@@ -1,78 +1,163 @@
-/* Contact */
+/* ---------------- Contact Section ---------------- */
 .contact-section {
   min-height: 100vh;
-  background: black;
-  padding: 80px;
+  background-color: #1A1A1B;
+  padding: 80px 200px; /* same as home container */
+  box-sizing: border-box;
 }
+
 .contact-header {
   text-align: center;
 }
+
 .contact-label {
   display: inline-block;
   font-size: 15px;
-  color: #2563eb;
-  text-align: center;
-  border: 0px solid #2563eb;
-  background-color: #2d2d2e;
+  color: #37AA9C;
+  background-color: #333F44;
   border-radius: 20px;
   font-weight: 100;
   padding: 4px 20px;
+  margin-bottom: 10px;
 }
+
 .contact-title {
   font-size: 40px;
   font-weight: bolder;
   color: white;
 }
 
+/* ---------------- Layout ---------------- */
 .section {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
+  gap: 40px;
   padding-top: 30px;
+  align-items: stretch; /* equal height */
 }
 
 .left_section,
 .right_section {
-  /* padding: 25px; */
-  /* border: 1px solid hsl(214, 8%, 39%); */
-  border-radius: 10px;
-}
-form {
-  padding: 25px;
-  border: 1px solid hsl(214, 8%, 39%);
-  border-radius: 10px;
-}
-.left_section {
-  width: 40%;
-  background-color: #2563eb;
-}
-.right_section {
+  background-color: #333F44;
+  border-radius: 20px;
+  flex: 1 1 45%;
+  min-width: 320px;
+  padding: 30px;
+  box-sizing: border-box;
+  color: white;
   display: flex;
-  opacity: 1;
-  width: 40%;
+  flex-direction: column;
 }
+
+/* ---------------- Left Panel ---------------- */
+.left_section h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #37AA9C;
+}
+
+.info-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #1A1A1B;
+  border-radius: 12px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+
+.info-block .icon {
+  font-size: 35px;
+  color: #37AA9C;
+  background-color: #333F44;
+  border-radius: 15%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-block div p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: white;
+}
+
+.info-title {
+  font-weight: bold;
+}
+
+.social {
+  margin-top: 25px;
+}
+
+.social p {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons svg {
+  font-size: 35px;
+  color: #37AA9C;
+  background-color: #1A1A1B;
+  border-radius: 10%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.social-icons svg:hover {
+  color: #94F3E4;
+  border-color: #94F3E4;
+}
+
+/* ---------------- Right Panel (Form) ---------------- */
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Name and Email on same row */
+.top-row {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.top-row .field-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Other rows */
 .row {
   display: flex;
-  flex-wrap: wrap;
-  /* gap: 1px; */
-  margin-bottom: 1.5rem;
+  gap: 15px;
 }
 
 .field {
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: 100%; /* add this */
 }
-#name,
-#email {
-  width: 50%;
-}
+
 label {
   margin-bottom: 5px;
-  /* font-weight: bold; */
   color: white;
 }
 
@@ -80,11 +165,12 @@ label {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: transparent;
-  padding: 8px 12px;
-  border: 1px solid #2563eb;
-  border-radius: 6px;
+  background: #1A1A1B;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #37AA9C;
   transition: border 0.3s ease;
+  box-sizing: border-box;
 }
 
 .input-icon input,
@@ -92,48 +178,113 @@ label {
   flex: 1;
   border: none;
   outline: none;
+  width: 80%;
   font-size: 1rem;
   background: transparent;
-  color: white; /* Keep input text visible on dark background */
+  color: white;
 }
 
 .input-icon svg,
 input::placeholder,
 textarea::placeholder {
-  color: #a4a9ba; /* Change to any color you want */
+  color: #a4a9ba;
 }
-/* Change border color when input is focused */
+
 .input-icon:has(input:focus),
 .input-icon:has(textarea:focus) {
-  border-color: #485c89;
+  border-color: #94F3E4;
 }
 
 textarea {
   resize: vertical;
   min-height: 100px;
 }
+
 .textarea-icon {
-  align-items: flex-start; /* Align icon to top */
+  align-items: flex-start;
 }
 
-/* Optional: adjust icon padding to match top of textarea text */
 .textarea-icon svg {
   margin-top: 6px;
 }
 
+/* ---------------- Button ---------------- */
 .submit-btn {
   width: 100%;
-  padding: 10px;
-  background-color: #2563eb;
+  padding: 12px;
+  background-color: #37AA9C;
   border: none;
   border-radius: 10px;
-  color: white;
-  /* font-weight: bold; */
+  color: #1A1A1B;
+  font-size: 16px;
   cursor: pointer;
   margin-top: 10px;
-  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .submit-btn:hover {
   transform: scale(1.05);
+  background-color: #94F3E4;
+}
+
+/* ---------------- Responsiveness ---------------- */
+
+/* Tablet / small laptop (≤1024px) */
+@media (max-width: 1024px) {
+  .contact-title {
+    font-size: 32px;
+  }
+
+  .section {
+    flex-direction: column; /* stack panels */
+    gap: 30px;
+  }
+
+  .left_section,
+  .right_section {
+    width: 100%;
+  }
+
+  .top-row {
+    flex-direction: column; /* stack name/email */
+  }
+
+  .top-row .field-wrap {
+    width: 100%;
+  }
+}
+
+/* Mobile / smaller tablets (≤768px) */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 60px 40px;
+  }
+
+  .contact-title {
+    font-size: 28px;
+  }
+
+  .social-icons {
+    gap: 12px;
+  }
+}
+
+/* Mobile phones (≤480px) */
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 40px 20px;
+  }
+
+  .contact-title {
+    font-size: 24px;
+  }
+
+  .social-icons {
+    gap: 10px;
+  }
+
+  .input-icon input,
+  .input-icon textarea {
+    font-size: 0.9rem;
+  }
 }

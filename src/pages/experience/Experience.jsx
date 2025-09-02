@@ -4,7 +4,7 @@ function Experience() {
     <section id="experience" className="experience-section p-5" style={{ minHeight: '100vh' }}>
   <div className="experience-header">
     <span className="experience-label">Experience</span>
-    <h2 className="experience-title">Work Experience</h2>
+    <h2 className="experience-title">Professional Experience</h2>
   </div>
 
   <div className="experience-timeline">

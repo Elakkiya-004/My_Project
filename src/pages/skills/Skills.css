@@ -1,4 +1,4 @@
-/* ---------------- Skills Section ---------------- */
+/*   Skills Section   */
 .skills-section {
   scroll-margin-top: 80px;
   background-color: #1A1A1B; /* dark portfolio background */
@@ -48,7 +48,7 @@
   line-height: 1.6;
 }
 
-/* ---------------- Tabs with scroll arrows ---------------- */
+/*   Tabs with scroll arrows   */
 .tabs-container {
   position: relative;
   display: flex;
@@ -125,7 +125,7 @@
   right: -10px;
 }
 
-/* ---------------- Skills Panel ---------------- */
+/*   Skills Panel   */
 .skills-panel {
   display: flex;
   flex-wrap: wrap;
@@ -166,7 +166,7 @@
   font-size: 0.95rem;
 }
 
-/* ---------------- Responsive Styles ---------------- */
+/*   Responsive Styles   */
 
 /* Tablet screens */
 @media (max-width: 992px) {
