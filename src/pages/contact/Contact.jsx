@@ -1,6 +1,5 @@
-
+import React, { useRef, useState } from "react";
 import "./Contact.css";
-
 import {
   FaUser,
   FaEnvelope,
@@ -12,8 +11,48 @@ import {
   FaPaperPlane,
   FaMapMarkerAlt,
 } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
+    const formRef = useRef();
+  const [status, setStatus] = useState("");
+    const sendEmail = (e) => {
+    e.preventDefault();
+
+    // Get the user's email domain
+    const userEmail = formRef.current.from_email.value;
+    const emailDomain = userEmail.split("@")[1].toLowerCase();
+
+    // Decide which service ID to use based on domain (optional)
+    let serviceId = "service_47jopws"; // default Gmail service
+    if (emailDomain.includes("outlook.com") || emailDomain.includes("hotmail.com")) {
+      serviceId = "service_ewmcwbk";
+    } else if (emailDomain.includes("yahoo.com")) {
+      serviceId = "service_yahoo";
+    } else if (emailDomain.includes("zoho.com")) {
+      serviceId = "service_zoho";
+    }
+console.log(formRef.current)
+    emailjs
+      .sendForm(
+        serviceId,               // Service ID (dynamic)
+        "template_9fcmtpa",    // Template ID from EmailJS
+        formRef.current,
+        "ojvk7IXYRi7W5-kME"        // Public Key from EmailJS
+      )
+      .then(
+        (result) => {
+          
+          console.log(result.text);
+          setStatus("✅ Message sent successfully!");
+          formRef.current.reset();
+        },
+        (error) => {
+          console.error(error.text);
+          setStatus("❌ Failed to send. Please try again.");
+        }
+      );
+  };
   return (
     <section id="contact" className="contact-section">
       <div className="contact-header">
@@ -50,31 +89,39 @@ export default function Contact() {
                   <FaTwitter />
                 </div>
               </div>
-
-              
             </div>
           </div>
         </div>
 
         <div className="right_section">
-          <form>
-           <div className="top-row">
-  <div className="field-wrap">
-    <label htmlFor="name">Your Name</label>
-    <div className="input-icon">
-      <FaUser />
-      <input type="text" id="name" name="name" placeholder="Enter your name" />
-    </div>
-  </div>
+      <form ref={formRef} onSubmit={sendEmail} className="contact-form">
+            <div className="top-row">
+              <div className="field-wrap">
+                <label htmlFor="name">Your Name</label>
+                <div className="input-icon">
+                  <FaUser />
+                  <input
+                    type="text"
+                    id="name"
+                    name="from_name"
+                    placeholder="Enter your name"
+                  />
+                </div>
+              </div>
 
-  <div className="field-wrap">
-    <label htmlFor="email">Email</label>
-    <div className="input-icon">
-      <FaEnvelope />
-      <input type="email" id="email" name="email" placeholder="Enter your email" />
-    </div>
-  </div>
-</div>
+              <div className="field-wrap">
+                <label htmlFor="email">Email</label>
+                <div className="input-icon">
+                  <FaEnvelope />
+                  <input
+                    type="email"
+                    id="email"
+                    name="from_email"
+                    placeholder="Enter your email"
+                  />
+                </div>
+              </div>
+            </div>
 
             <div className="row">
               <div className="field">
@@ -110,7 +157,6 @@ export default function Contact() {
             </button>
           </form>
         </div>
-      
       </div>
     </section>
   );
